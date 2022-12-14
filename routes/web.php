@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\CategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,4 +22,8 @@ Route::get('/', function () {
 Route::get('admin', [AdminController::class, 'index'])->name('login');
 Route::post('admin/auth', [AdminController::class, 'auth'])->name('admin.auth');
 
+Route::middleware(['admin_auth'])->group(function () {
 Route::get('admin/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
+Route::get('admin/category', [CategoryController::class, 'index'])->name('category');
+});
+

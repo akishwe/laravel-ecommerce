@@ -35,7 +35,7 @@ class AdminController extends Controller
         $user = Admin::where('email', '=', $request->email)->first();
         if ($user) {
             if (Hash::check($request->password, $user->password)) {
-                $request->session()->put('userId', $user->id);
+               $request->session()->put('userId', $user->id);
                 return redirect('admin/dashboard');
             } else {
                 return redirect()->back()->with('fail', 'This email is not registered');
