@@ -25,5 +25,6 @@ Route::post('admin/auth', [AdminController::class, 'auth'])->name('admin.auth');
 Route::middleware(['admin_auth'])->group(function () {
 Route::get('admin/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
 Route::get('admin/category', [CategoryController::class, 'index'])->name('category');
+Route::get('admin/logout', [AdminController::class, 'logout'])->name('logout');
 });
 

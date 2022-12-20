@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Admin;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Redirect;
 
 class AdminController extends Controller
@@ -46,5 +48,16 @@ class AdminController extends Controller
     public function dashboard()
     {
         return view('admin.dashboard');
+    }
+
+     public function logout(Request $request)
+    {
+        $message = 'User Logout Successfully';
+        if (Session::has('success')) {
+            $message = Session::get('success');
+        }
+        Auth::logout();
+        $request->session()->flush();
+        return redirect()->route('login')->with('success', $message);
     }
 }
